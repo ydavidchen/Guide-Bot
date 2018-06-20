@@ -11,7 +11,6 @@ let $audioForm = $('.audio-box');
 let $imageForm = $('.image-box');
 let robotVersion;
 
-
 /**
  * Connects to the robort
  */
@@ -21,8 +20,7 @@ function connect2Robot() {
 		robo.GetDeviceInformation(function (data) {
 			if (data[0].result) {
 				showToastMessage("Successfully connected to " + $("#misty-robot-ip-address").val() + ".");
-			}
-			else {
+			} else {
 				showToastMessage("Having trouble connecting, please recheck the ip or name", 4000);
 			}
 		});
@@ -73,10 +71,9 @@ function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
-
-
-
+/**
+ * On ready document function
+ */
 $(document).ready(function () {
 	let motions = misty.apiClient.motions;
 	let moods = misty.apiClient.moods;
@@ -95,10 +92,6 @@ $(document).ready(function () {
 		}
 
 		robo = new misty.apiClient.MistyRobot(ip, 80);
-
-		console.log(ip);
-		console.log(robo);
-
 		robo.GetDeviceInformation(function (data) {
 			console.log(data);
 			//Gets the robot version from the robot
@@ -107,6 +100,7 @@ $(document).ready(function () {
 			robotVersion = parseInt(versionArray[0]);
 			matchPageToRobotVersion();
 			if (data[0].result) {
+				setLEDColor("White LED");
 				showToastMessage("Connected successfully.");
 				robo.Connect();
 			} else {
@@ -116,11 +110,6 @@ $(document).ready(function () {
 		showToastMessage("Connecting to " + ip + "...", 1000);
 	});
 
-
-
-
-
-//	init();
 
 	let isAdvancedUpload = function () {
 		var div = document.createElement('div');
@@ -425,356 +414,8 @@ $(document).ready(function () {
 			robo.DriveTimeByValue(20, 8, 500);
 		}
 	});
-
-	//** HEAD **//
-	$('#misty-robot-head-move').submit(function (e) {
-		e.preventDefault();
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			var pitch = parseFloat($("#pitch").val(), 10);
-			var roll = parseFloat($("#roll").val(), 10);
-			var yaw = parseFloat($("#yaw").val(), 10);
-			var velocity = parseFloat($("#velocity").val(), 10);
-			console.log(pitch, roll, yaw, velocity);
-			robo.MoveHead(pitch, roll, yaw, velocity);
-		}
-	});
-
 	
-	//**EYES**//
-	$('#moods').on('click', 'li', function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			var mood = ($(this).text());
-			$("#moods-dropdown").text(mood);
-			console.log(mood);
-			showToastMessage("Changing eyes");
-			robo.ChangeEyes(mood, function (data) { console.log(JSON.stringify(data)); });
-		}
-	});
-
-	$("#moods-dropdown").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			$("#moods").empty();
-			$.each(moods, function (key, value) {
-				$('#moods').append($('<li class="dropdown-item"></li>').html(key));
-			});
-		}
-	});
-
-	$("#misty-robot-change-eyes-random").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			showToastMessage("Changing eyes");
-			robo.ChangeEyesByRandom(function (data) { console.log(JSON.stringify(data)); });
-		}
-	});
-	
-	$("#misty-robot-get-list-eye-sprites").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			robo.GetListOfEyeSprites(function (data) { showToastMessage("List populated..."); console.log(JSON.stringify(data));});
-		}
-	});
-
-	//**IMAGES**//
-
-	$("#misty-robot-change-image-display").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			if ($("#misty-robot-image-file").prop('files').length == 0) {
-				showToastMessage("No image file has been uploaded through the browser this session")
-				return;
-			}
-
-			showToastMessage("Changing image");
-			robo.ChangeDisplayImage(
-				$("#misty-robot-image-file").prop('files')[0].name,
-				function (data) {
-					console.log(JSON.stringify(data));
-
-					//$('#misty-robot-image-list-output1').text(data);
-				});
-		}
-	});
-
-	$("#misty-robot-image-file-get-list").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			showToastMessage("Populating image list...");
-			robo.GetListOfImages(function (data) {
-				
-				for (var i = 0; i < data[0].result.length; i++) {
-					if (!imageList.includes(data[0].result[i].name)) {
-						imageList.push(data[0].result[i].name);
-					}
-				}
-				populateImageList();
-				showToastMessage("List populated...");
-				showToastMessage("Populating image list...");
-				console.log(JSON.stringify(imageList));
-			});
-		}
-	});
-	
-	$("#misty-robot-image-browser-save").click(function () {
-		if (robo === undefined) {
-			connect2Robot();
-		}
-
-		if ($("#misty-robot-image-file").prop('files').length == 0) {
-			showToastMessage("You must browse for an audio file first");
-			return;
-		}
-
-		var file = $("#misty-robot-image-file").prop('files')[0];
-		var imageName = file.name;
-		var width = file.imageWidth;
-		var height = file.imageHeight;
-
-		let fr = new FileReader();
-		fr.onload = function () {
-			let int8View = new Uint8Array(fr.result);
-
-			robo.SaveAudioAssetToRobot(
-				imageName,
-				int8View,
-				function (data) {
-					showToastMessage(imageName + " saved");
-					lastUploadedImage = imageName;
-				}
-			);
-		};
-		fr.readAsArrayBuffer($("#misty-robot-audio-file").prop('files')[0]);
-	});
-
-	$("#misty-robot-image-save").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-
-			var imageData = $('input[name="image-file"]:checked').val();
-			if (!imageData) {
-				showToastMessage("You must drag and drop an image file and then click the checkmark first");
-				return;
-			}
-
-			let imageFile = $('input[name="image-file"]:checked').val().split("'");
-
-			if (imageFile.length < 8 || !imageFile[3]) {
-				showToastMessage("You must add an image file first");
-				return;
-			}
-
-			robo.SaveImageAssetToRobot(
-				imageFile[3],
-				imageFile[7],
-				imageFile[11],
-				imageFile[15],
-				function (data) {
-					showToastMessage(imageFile[3] + " Saved");
-					console.log(JSON.stringify(data));
-					lastUploadedImage = imageFile;
-					imageList.push(imageFile[3]);
-					populateImageList();
-				}
-			);		
-		}
-	});
-
-	$("#display-image-button").on("click", function (e) {
-		e.preventDefault();
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			var assetid = $("#image-asset-id").val();
-
-			if (assetid === null || assetid === "") {
-				showToastMessage("You must populate the image list first");
-				return;
-			}
-
-			showToastMessage("Displaying image");
-			robo.ChangeDisplayImage(assetid);
-		}
-	});
-
-	$("#delete-image-button").on("click", function (e) {
-		e.preventDefault();
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			var assetid = $("#image-asset-id").val();
-
-			if (assetid === null || assetid === "") {
-				showToastMessage("You must populate the image list first");
-				return;
-			}
-
-			robo.GetListOfImages(function (data) {
-
-				for (var i = 0; i < data[0].result.length; i++) {
-					if (data[0].result[i].name == assetid) {
-						if (data[0].result[i].location.includes("Assets")) {
-							showToastMessage("Sorry, this appears to be a system file. Only user added files can be deleted!");
-							return;
-						}
-
-						DeleteUserImage(assetid)
-					}
-				}
-			});
-		}
-	});
-
-	function DeleteUserImage(assetid) {
-
-		showToastMessage("Deleting image");
-
-		robo.DeleteImage(assetid, function (data) {
-			if (data[0].status === "Success") {
-				$('#image-asset-id').empty();
-				var index = imageList.indexOf(assetid);
-				imageList.splice(index, 1);
-				console.log(assetid + " deleted.");
-				populateImageList();
-			}
-		});
-	}
-
-	//**FACE**//
-
-	$("#start-face-training").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			var faceId = $("#face-id").val();
-
-			if (faceId === null || faceId === "") {
-				showToastMessage("You must enter in a name");
-				return;
-			}
-
-			showToastMessage("Starting training, put your face up to camera for 10 seconds", 4000);
-			robo.StartFaceTraining(faceId);
-		}
-	});
-
-	$("#cancel-face-training").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			showToastMessage("Canceling face training");
-			robo.StopFaceTraining();
-		}
-	});
-
-
-	$("#clear-learned-faces").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			showToastMessage("Clearing faces");
-			robo.ClearLearnedFaces(function (result) {
-				console.log(result)
-			});
-		}
-	});
-
-	$("#get-learned-faces").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			showToastMessage("Getting learned faces");
-			robo.GetLearnedFaces(function (result) {
-				console.log(result)
-			});
-		}
-	});
-
-	$("#start-face-detection").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else if (!robo.IsWebsocketConnected) {
-			noWebsocketMessage();
-		}
-		else {
-
-			showToastMessage("Starting face detection");
-			robo.RunFaceDetectionProcess(function (data) {
-				console.log(JSON.stringify(data));
-			});
-		}
-	});
-
-	$("#stop-face-detection").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else if (!robo.IsWebsocketConnected) {
-			noWebsocketMessage();
-		}
-		else {
-			showToastMessage("Stopping face detection");
-			robo.StopFaceDetection();
-		}
-	});
-
-
-
-	$("#start-face-recognition").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else if (!robo.IsWebsocketConnected) {
-			noWebsocketMessage();
-		}
-		else {
-			showToastMessage("Starting face recognition");
-			robo.RunFaceRecognitionProcess(function (data) {
-				console.log("FaceRecognition", JSON.stringify(data));
-			});
-		}
-	});
-
-	$("#stop-face-recognition").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else if (!robo.IsWebsocketConnected) {
-			noWebsocketMessage();
-		}
-		else {
-			showToastMessage("Stopping face recognition");
-			robo.StopFaceRecognition();
-		}
-	});
-
 	//**AUDIO**//
-
 	$("#play-audio-button").on("click", function (e) {
 		e.preventDefault();
 		if (robo === undefined) {
@@ -790,138 +431,6 @@ $(document).ready(function () {
 
 			showToastMessage("Playing audio file");
 			robo.PlayAudioClip(assetid);
-		}
-	});
-
-	$("#delete-audio-button").on("click", function (e) {
-		e.preventDefault();
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			var assetid = $("#audio-asset-id").val();
-
-			if (assetid === null || assetid === "") {
-				showToastMessage("You must populate the audio list first");
-				return;
-			}
-			if (!assetid.includes(".")) {
-				showToastMessage("Sorry, this appears to be a system file. Only user added files can be deleted!");
-				return;
-			}
-
-			showToastMessage("Deleting audio file");
-			robo.DeleteAudioClip(assetid, function (data) {
-				if (data[0].status === "Success") {
-					$('#audio-asset-id').empty();
-					var index = audioFileList.indexOf(assetid);
-					audioFileList.splice(index, 1);
-					console.log(assetid + " deleted.");
-					populateAudioList();
-				}
-			});
-		}
-	});
-
-	$("#misty-robot-audio-clip-browser-save").click(function () {
-		if (robo === undefined) {
-			connect2Robot();
-		}
-
-		if ($("#misty-robot-audio-file").prop('files').length == 0) {
-			showToastMessage("You must browse for an audio file first");
-			return;
-		}
-
-		var audioName = $("#misty-robot-audio-file").prop('files')[0].name;
-
-		let fr = new FileReader();
-		fr.onload = function () {
-			let int8View = new Uint8Array(fr.result);
-
-			robo.SaveAudioAssetToRobot(
-				audioName,
-				int8View,
-				function (data) {
-					showToastMessage(audioName + " saved");
-					lastUploadedAudio = audioName;
-				}
-			);
-		};
-		fr.readAsArrayBuffer($("#misty-robot-audio-file").prop('files')[0]);
-	});
-
-	$("#misty-robot-audio-clip-save").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			
-			var audioData = $('input[name="audio-file"]:checked').val();
-			if (!audioData) {
-				showToastMessage("You must drag and drop an audio file and then click the checkmark first");
-				return;
-			}
-
-			let audioFile = $('input[name="audio-file"]:checked').val().split("'");
-
-			if (audioFile.length < 8 || !audioFile[3]) {
-				showToastMessage("You must add an audio file first");
-				return;
-			}
-
-			robo.SaveAudioAssetToRobot(
-				audioFile[3],
-				audioFile[7],
-				function (data) {
-					showToastMessage(audioFile[3] + " Saved");
-					console.log(data);
-					lastUploadedAudio = audioFile;
-					audioClipList.push(audioFile[3]);
-					populateAudioList();
-				}
-			);
-		}
-	});
-
-	$("#misty-robot-audio-clip-get-list").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			robo.GetListOfAudioClips(function (data) {
-
-				for (var i = 0; i < data[0].result.length; i++) {
-					if (!audioClipList.includes(data[0].result[i].name)) {
-						audioClipList.push(data[0].result[i].name);
-						$('#audio-asset-id').append($('<option/>', {
-							value: data[0].result[i].name,
-							text: data[0].result[i].name
-						}));
-
-					}
-				}
-				showToastMessage("List populated...");
-				console.log(JSON.stringify(audioClipList));
-			});		
-		}
-	});
-
-	$("#misty-robot-audio-file-get-list").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			showToastMessage("Populating audio list...");
-
-			robo.GetListOfAudioFiles(function (data) {
-				audioFileList = [];
-				for (var i = 0; i < data[0].result.length; i++) {
-					audioFileList.push(data[0].result[i].name);
-				}
-				populateAudioList();
-				showToastMessage("List populated...");
-			});
 		}
 	});
 
@@ -950,7 +459,6 @@ $(document).ready(function () {
 		var fileList = e.target.files;
 		$audioForm.trigger('drop', fileList);
 	});
-
 
 	$audioForm.on('drag dragstart dragend dragover dragenter dragleave drop submit', function (e) {
 		e.preventDefault();
@@ -1152,41 +660,6 @@ $(document).ready(function () {
 	});
 
 	//**LED**//
-
-	//Sample.html + index.html
-	$('#led').on('click', 'li', function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			var color = ($(this).text());
-			$("#led-dropdown").text(color);
-			console.log(color);
-			robo.ChangeLED(color, function (data) { console.log(JSON.stringify(data)); showToastMessage("Changing LED"); });
-		}
-	});
-
-	$("#led-dropdown").on("click", function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			$("#led").empty();
-			$.each(colors, function (key, value) {
-				$('#led').append($('<li class="dropdown-item"></li>').html(key));
-			});
-		}
-	});
-
-	$("#misty-robot-change-led").click(function () {
-		if (robo === undefined) {
-			need2ConnectMesssage();
-		}
-		else {
-			robo.ChangeLED(Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255), Math.trunc(Math.random() * 255));
-		}
-	});
-
 	$("#drive-to-location-form").submit(function (e) {
 		e.preventDefault();
 		if (robo === undefined) {
@@ -1206,7 +679,6 @@ $(document).ready(function () {
 			need2ConnectMesssage();
 		}
 		else {
-
 			var path = $("#follow-path-value").val();
 			showToastMessage("Attempting to follow path")
 			robo.FollowPath(path, function (data) { console.log(JSON.stringify(data)); });
