@@ -165,6 +165,13 @@ ul, li {
 	color: #6c757d;
 }
 
+.btn-outline-secondary {
+	border-radius: 0;
+	background: none;
+	border: none;
+	color: #6c757d;
+}
+
 .btn-outline-primary:hover,
 .btn-outline-primary:active {
 	color: #FFF;
@@ -452,15 +459,15 @@ ul, li {
 
 @font-face {
 	font-family: ‘Basis-Grotesque-Regular’;
-	src: url(/Content/fonts/basis-grotesque-regular.woff2) format("woff2"), 
-		url(/Content/fonts/basis-grotesque-regular.woff) format(“woff”), 
+	src: url(/Content/fonts/basis-grotesque-regular.woff2) format("woff2"),
+		url(/Content/fonts/basis-grotesque-regular.woff) format(“woff”),
 		url(/Content/fonts/basis-grotesque-regular.ttf”) format(“truetype”)
 }
 
 @font-face {
 	font-family: ‘Basis-Grotesque-Bold’;
-	src: url(/Content/fonts/basis-grotesque-bold.eot#iefix) format(“embedded-opentype”), 
-		url(/Content/fonts/basis-grotesque-bold.woff2) format("woff2"), 
-		url(/Content/fonts/basis-grotesque-bold.woff) format(“woff”), 
+	src: url(/Content/fonts/basis-grotesque-bold.eot#iefix) format(“embedded-opentype”),
+		url(/Content/fonts/basis-grotesque-bold.woff2) format("woff2"),
+		url(/Content/fonts/basis-grotesque-bold.woff) format(“woff”),
 		url(/Content/fonts/basis-grotesque-bold.ttf) format(“truetype”)
 }

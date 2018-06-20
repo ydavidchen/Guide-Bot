@@ -13,13 +13,11 @@
 		<link rel="stylesheet" href="assets/css/default.css" type="text/css" />
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 		<link rel="stylesheet" href="fonts/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.min.css" type="text/css">
-		
 		<!-- scripts-->
 		<script src="assets/js/lib/popper.js" type="text/javascript"></script>
 		<script src="assets/js/lib/jquery-3.2.1.min.js" type="text/javascript"></script>
 		<script src="assets/js/lib/bootstrap.min.js" type="text/javascript"></script>
 		<script src="assets/js/lib/bootstrap-toggle.js" type="text/javascript"></script>
-	
 		<script src="app-sample.js" type="text/javascript"></script>
 		<script src="controllers/drive-setup.js" type="text/javascript"></script>
 		<script src="controllers/drive-directions.js" type="text/javascript"></script>
@@ -55,11 +53,11 @@
 					</div>
 					<div class="col-lg-2 col-md-2 col-sm-6">
 						<input id="toggle-one" checked type="checkbox" onchange="driveTab()">
-						<script> 
-							$(function() { 
+						<script>
+							$(function() {
 								$('#toggle-one').bootstrapToggle();
 							});
-		
+
 							function driveTab() {
 								var isAuto = ($('#toggle-one').val() === "on") ? true : false;
 								if (isAuto) {
@@ -80,27 +78,17 @@
 					<div id="drive-manual" class="pr-5 col-lg-12 col-md-12 col-sm-12 mb-5">
 						<table id="driving-table">
 							<tr>
-								<td class="drive-button-cell">
-									<button id="do-drive-left-turn" class="btn btn-outline-primary drive-button" onclick="driveLeftTurn()">
-										<i class="fa fa-arrow-up fa-lg rotate-45-left"></i>
-									</button>
-								</td>
+								<td class="drive-button-cell"><button id="do-drive-left-turn" class="btn btn-outline-secondary drive-button"></button></td>
 								<td class="drive-button-cell">
 									<button id="do-drive-forward" class="btn btn-outline-primary drive-button" onclick="driveForward()">
 										<i class="fa fa-arrow-up fa-lg"></i>
 									</button>
 								</td>
-								<td class="drive-button-cell">
-									<button id="do-drive-right-turn" class="btn btn-outline-primary drive-button" onclick="driveRightTurn()">
-										<i class="fa fa-arrow-up fa-lg rotate-45-right"></i>
-									</button>
-								</td>
+								<td class="drive-button-cell"><button id="do-drive-right-turn" class="btn btn-outline-secondary drive-button"></button></td>
 							</tr>
 							<tr>
 								<td class="drive-button-cell">
-									<button id="do-drive-spin-left" class="btn btn-outline-primary drive-button" onclick="driveLeftRotation()"></button>
-										<i class="fa fa-arrow-left fa-lg"></i>
-									</button>
+									<button id="do-drive-spin-left" class="btn btn-outline-primary drive-button"><i class="fa fa-arrow-left fa-lg"></i></button>
 								</td>
 								<td class="drive-button-cell">
 									<button id="do-drive-stop"  class="btn btn-outline-primary drive-button" onclick="driveStop()">
@@ -114,20 +102,14 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="drive-button-cell">
-									<button id="do-drive-backup-left" class="btn btn-outline-primary drive-button" onclick="driveLeftBackwardRotation()">
-										<i class="fa fa-arrow-down fa-lg rotate-45-right"></i>
-									</button>
-								</td>
+								<td class="drive-button-cell"><button id="do-drive-backup-left" class="btn btn-outline-secondary drive-button"></button></td>
 								<td class="drive-button-cell">
 									<button id="do-drive-backward" class="btn btn-outline-primary drive-button" onclick="driveBackward()">
 										<i class="fa fa-arrow-down fa-lg"></i>
 									</button>
 								</td>
 								<td class="drive-button-cell">
-									<button id="do-drive-backup-right" class="btn btn-outline-primary drive-button" onclick="driveRightBackwardRotation()">
-										<i class="fa fa-arrow-down fa-lg rotate-45-left"></i>
-									</button>
+									<button id="do-drive-backup-right" class="btn btn-outline-secondary drive-button" onclick="driveRightBackwardRotation()">	</button>
 								</td>
 							</tr>
 						</table>
@@ -139,16 +121,16 @@
 					</div>
 				</div>
 
-				
 
-			
-				
-				
+
+
+
+
 				</div>
 			</section>
 		</main>
 
-	
+
 	<!--Easy Commands--
 	<div id="content" class="mx-5">
 		<section class="d-flex flex-column pt-5" id="easy-commands">
@@ -210,7 +192,7 @@
 				</div>
 		</section>
 
-		
+
 		<section id="websockets">
 			<div class="mt-5 ml-3">
 				<h5>Sensor Reading Websockets</h5>
@@ -344,7 +326,7 @@
 							<p>Pixels per grid is a value from 1 to 20 that indicates the number of pixels per grid cell on the rendered map. The higher the number, the larger the map.</p>
 							<input type="number" step="1" class="col-md-4 col-sm-12 form-control" id="pixel-per-grid" placeholder="Pixels Per Grid" value="5" min="1" max="20">
 						</div>
-						<div class="col-md-4 col-sm-12 pl-0">			
+						<div class="col-md-4 col-sm-12 pl-0">
 							<button id="misty-robot-slam-get-raw-map" class="btn btn-outline-primary col-md-4 col-sm-12 form-control">Get Map</button>
 						</div>
 					</div>
