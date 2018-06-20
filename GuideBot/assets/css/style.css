@@ -1,0 +1,9 @@
+.feature-head {
+    margin-top: 12px;
+}
+.feature-head div {
+    display: inline-block;
+}
+.feature-head div:last-child {
+    float: right;
+}

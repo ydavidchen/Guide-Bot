@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"noImplicitAny": false,
+		"noEmitOnError": true,
+		"removeComments": false,
+		"sourceMap": true,
+		//"allowJs": true,
+		//"checkJs": true,
+		"outDir": "./js/MistyRobot/",
+		//"typeRoots": [ "./" ],
+		"target": "es6"
+	},
+	"exclude": [
+		"node_modules",
+		"wwwroot"
+	//],
+	//"files": [
+	//	"MistyAjax.ts",
+	//	"MistyAPI.ts",
+	//	"MistyRobot.ts"
+	]
+}

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Uap.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Uap.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|AnyCPU">
+      <Configuration>Debug</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
+      <Platform>x86</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|AnyCPU">
+      <Configuration>Release</Configuration>
+      <Platform>AnyCPU</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
+      <Platform>x86</Platform>
+      <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>c69be10e-d151-47fc-b99e-3ef25cece6a3</ProjectGuid>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0'">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).Default.props" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).props" />
+  <PropertyGroup>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>$(VersionNumberMajor).$(VersionNumberMinor)</MinimumVisualStudioVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PackageCertificateKeyFile>Misty.API_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="bootstrap.min.js" />
+    <Content Include="css\bootstrap\dist\css\bootstrap-grid.css" />
+    <Content Include="css\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <Content Include="css\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <Content Include="css\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="css\bootstrap\dist\css\bootstrap-reboot.css" />
+    <Content Include="css\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <Content Include="css\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <Content Include="css\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="css\bootstrap\dist\css\bootstrap.css" />
+    <Content Include="css\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="css\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="css\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="css\bootstrap\dist\js\bootstrap.bundle.js" />
+    <Content Include="css\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <Content Include="css\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <Content Include="css\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="css\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="css\bootstrap\dist\js\bootstrap.js.map" />
+    <Content Include="css\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="css\bootstrap\dist\js\bootstrap.min.js.map" />
+    <Content Include="fonts\basis-grotesque-bold.eot" />
+    <Content Include="fonts\basis-grotesque-bold.ttf" />
+    <Content Include="fonts\basis-grotesque-bold.woff" />
+    <Content Include="fonts\basis-grotesque-bold.woff2" />
+    <Content Include="fonts\basis-grotesque-regular.eot" />
+    <Content Include="fonts\basis-grotesque-regular.ttf" />
+    <Content Include="fonts\basis-grotesque-regular.woff" />
+    <Content Include="fonts\basis-grotesque-regular.woff2" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\css\fa-svg-with-js.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fa-brands.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fa-brands.min.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fa-regular.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fa-regular.min.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fa-solid.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fa-solid.min.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fa-v4-shims.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fa-v4-shims.min.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fontawesome-all.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fontawesome-all.min.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fontawesome.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\svg-with-js\js\fontawesome.min.js" />
+    <Content Include="fonts\fontawesome-free-5.0.10\use-on-desktop\Font Awesome 5 Brands-Regular-400.otf" />
+    <Content Include="fonts\fontawesome-free-5.0.10\use-on-desktop\Font Awesome 5 Free-Regular-400.otf" />
+    <Content Include="fonts\fontawesome-free-5.0.10\use-on-desktop\Font Awesome 5 Free-Solid-900.otf" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fa-brands.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fa-brands.min.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fa-regular.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fa-regular.min.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fa-solid.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fa-solid.min.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fontawesome-all.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fontawesome-all.min.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fontawesome.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\css\fontawesome.min.css" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\fa-brands.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\fa-regular.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\fa-solid.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\fontawesome.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_animated.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_bordered-pulled.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_core.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_fixed-width.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_icons.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_larger.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_list.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_mixins.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_rotated-flipped.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_screen-reader.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_stacked.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\less\_variables.less" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\fa-brands.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\fa-regular.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\fa-solid.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\fontawesome.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_animated.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_bordered-pulled.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_core.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_fixed-width.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_icons.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_larger.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_list.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_mixins.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_rotated-flipped.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_screen-reader.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_stacked.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\scss\_variables.scss" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-brands-400.eot" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-brands-400.svg" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-brands-400.ttf" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-brands-400.woff" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-brands-400.woff2" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-regular-400.eot" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-regular-400.svg" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-regular-400.ttf" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-regular-400.woff" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-regular-400.woff2" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-solid-900.eot" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-solid-900.svg" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-solid-900.ttf" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-solid-900.woff" />
+    <Content Include="fonts\fontawesome-free-5.0.10\web-fonts-with-css\webfonts\fa-solid-900.woff2" />
+    <Content Include="images\MistyRobotics.White.png" />
+    <Content Include="images\MistySymbol.White.png" />
+    <Content Include="js\MistyRobot\misty.apiClient-1.0.0.0.js" />
+    <Content Include="js\MistyRobot\misty.apiClient-1.0.0.0.js.map" />
+    <Content Include="js\MistyRobot\MistyAjax.js" />
+    <Content Include="js\MistyRobot\MistyAjax.js.map" />
+    <Content Include="js\MistyRobot\MistyAPI.js" />
+    <Content Include="js\MistyRobot\MistyAPI.js.map" />
+    <Content Include="js\MistyRobot\MistyRobot.js" />
+    <Content Include="js\MistyRobot\MistyRobot.js.map" />
+    <Content Include="js\MistyRobot\MistyWebSocket.js" />
+    <Content Include="js\MistyRobot\MistyWebSocket.js.map" />
+    <Content Include="js\Popper\popper.js" />
+    <Content Include="node_modules\%40types\jquery\LICENSE" />
+    <Content Include="node_modules\%40types\jquery\package.json" />
+    <Content Include="node_modules\%40types\jquery\README.md" />
+    <Content Include="index.html" />
+    <Content Include="images\LockScreenLogo.scale-200.png" />
+    <Content Include="images\SplashScreen.scale-200.png" />
+    <Content Include="images\Square150x150Logo.scale-200.png" />
+    <Content Include="images\Square44x44Logo.scale-200.png" />
+    <Content Include="images\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="images\StoreLogo.png" />
+    <Content Include="images\Wide310x150Logo.scale-200.png" />
+    <Content Include="jquery-3.2.1.min.js" />
+    <Content Include="css\default.css" />
+    <Content Include="tsconfig.json" />
+    <TypeScriptCompile Include="misty.apiClient-1.0.0.0.ts" />
+    <TypeScriptCompile Include="MistyAjax.ts" />
+    <None Include="Misty.API_TemporaryKey.pfx" />
+    <TypeScriptCompile Include="MistyAPI.ts" />
+    <TypeScriptCompile Include="MistyRobot.ts" />
+    <TypeScriptCompile Include="SampleUI.js" />
+    <TypeScriptCompile Include="MistyWebSocket.ts" />
+    <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4a0dddb5-7a95-4fbf-97cc-616d07737a77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\bootstrap\.github\" />
+    <Folder Include="css\bootstrap\assets\brand\" />
+    <Folder Include="css\bootstrap\assets\css\" />
+    <Folder Include="css\bootstrap\assets\img\favicons\" />
+    <Folder Include="css\bootstrap\assets\js\src\" />
+    <Folder Include="css\bootstrap\assets\js\vendor\" />
+    <Folder Include="css\bootstrap\assets\scss\" />
+    <Folder Include="css\bootstrap\build\" />
+    <Folder Include="css\bootstrap\docs\4.0\about\" />
+    <Folder Include="css\bootstrap\docs\4.0\components\" />
+    <Folder Include="css\bootstrap\docs\4.0\content\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\album\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\blog\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\carousel\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\checkout\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\cover\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\dashboard\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\floating-labels\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\grid\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\jumbotron\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\navbar-bottom\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\navbar-fixed\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\navbar-static\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\navbars\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\offcanvas\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\pricing\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\product\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\screenshots\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\sign-in\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\starter-template\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\sticky-footer-navbar\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\sticky-footer\" />
+    <Folder Include="css\bootstrap\docs\4.0\examples\tooltip-viewport\" />
+    <Folder Include="css\bootstrap\docs\4.0\extend\" />
+    <Folder Include="css\bootstrap\docs\4.0\getting-started\" />
+    <Folder Include="css\bootstrap\docs\4.0\layout\" />
+    <Folder Include="css\bootstrap\docs\4.0\utilities\" />
+    <Folder Include="css\bootstrap\js\dist\" />
+    <Folder Include="css\bootstrap\js\src\" />
+    <Folder Include="css\bootstrap\js\tests\unit\" />
+    <Folder Include="css\bootstrap\js\tests\vendor\" />
+    <Folder Include="css\bootstrap\js\tests\visual\" />
+    <Folder Include="css\bootstrap\nuget\" />
+    <Folder Include="css\bootstrap\scss\mixins\" />
+    <Folder Include="css\bootstrap\scss\utilities\" />
+    <Folder Include="css\bootstrap\_data\" />
+    <Folder Include="css\bootstrap\_includes\icons\" />
+    <Folder Include="css\bootstrap\_layouts\" />
+    <Folder Include="css\bootstrap\_plugins\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\$(WMSJSProjectDirectory)\Microsoft.VisualStudio.$(WMSJSProject).targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Uap.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Uap.targets')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.jsproj.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.jsproj.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties tsconfig_1json__JSONSchema="" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below then uncomment
+       that target and the DisableFastUpToDateCheck PropertyGroup. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+  -->
+</Project>
